@@ -1,24 +1,39 @@
 const express = require("express");
+const axios = require("axios");
 const env = require("dotenv").config();
+const querystring = require("querystring");
 const spotifyWebApi = require("spotify-web-api-node");
 const cors = require("cors");
 
 const app = express();
 const port = 9000;
 
-app.use(cors);
-app.use(exoress.json());
+app.use(cors());
+app.use(express.json());
 
 const credentials = {
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
+  redirectUri: `http://localhost:3000/`,
 };
 
-app.get("/", (req, res) => {
-  res.send("howdy");
-});
+app.get("/", (req, res) => {});
 
-app.post("/login", (req, res) => {});
+app.post("/login", (req, res) => {
+  let spotify = new spotifyWebApi(credentials);
+  const code = req.body.code;
+  spotify
+    .authorizationCodeGrant(code)
+    .then((data) => {
+      res.json({
+        accessToken: data.body.access_token,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+});
 
 app.use((req, res, next) => {
   const error = new Error("Not found");
