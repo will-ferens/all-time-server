@@ -12,7 +12,7 @@ app.use(express.json());
 const credentials = {
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  redirectUri: `http://localhost:3000/`,
+  redirectUri: `https://60df8fa526405e6aee9a2ba0--blissful-dijkstra-3c9acb.netlify.app/`,
 };
 
 app.get("/", (req, res) => {
