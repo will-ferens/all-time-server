@@ -12,7 +12,7 @@ app.use(express.json());
 const credentials = {
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  redirectUri: `https://60df905e5823047086eee6d5--blissful-dijkstra-3c9acb.netlify.app/`,
+  redirectUri: `https://all-time-client.vercel.app/`,
 };
 
 app.get("/", (req, res) => {
