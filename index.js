@@ -15,7 +15,9 @@ const credentials = {
   redirectUri: `http://localhost:3000/`,
 };
 
-app.get("/", (req, res) => {});
+app.get("/", (req, res) => {
+  res.send("howdy");
+});
 
 app.post("/login", (req, res) => {
   let spotify = new spotifyWebApi(credentials);
