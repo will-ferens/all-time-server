@@ -1,7 +1,5 @@
 const express = require("express");
-const axios = require("axios");
 const env = require("dotenv").config();
-const querystring = require("querystring");
 const spotifyWebApi = require("spotify-web-api-node");
 const cors = require("cors");
 
@@ -27,6 +25,7 @@ app.post("/login", (req, res) => {
     .then((data) => {
       res.json({
         accessToken: data.body.access_token,
+        refreshToken: data.body.refresh_token,
       });
     })
     .catch((err) => {
